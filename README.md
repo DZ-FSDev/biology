@@ -1,2 +1,2 @@
 # biology
-Sample code from biological applications.
+Sample code from BioInformatics applications.
