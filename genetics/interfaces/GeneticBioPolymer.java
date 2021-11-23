@@ -3,9 +3,11 @@ package com.dz_fs_dev.biology.genetics.interfaces;
 import org.biojava.nbio.core.exceptions.CompoundNotFoundException;
 import org.biojava.nbio.core.sequence.DNASequence;
 import org.biojava.nbio.core.sequence.ExonSequence;
+import org.biojava.nbio.core.sequence.GeneSequence;
 import org.biojava.nbio.core.sequence.IntronSequence;
 import org.biojava.nbio.core.sequence.ProteinSequence;
 import org.biojava.nbio.core.sequence.RNASequence;
+import org.biojava.nbio.core.sequence.TranscriptSequence;
 
 /**
  * The user of this interface should implement functionality such that it
@@ -18,8 +20,8 @@ import org.biojava.nbio.core.sequence.RNASequence;
  *            data type.
  * 
  * @author DZ-FSDev
- * @since 16.0.1
- * @version 0.0.2
+ * @since 17.0.1
+ * @version 0.0.3
  */
 public interface GeneticBioPolymer<T> {
 	/**
@@ -53,6 +55,20 @@ public interface GeneticBioPolymer<T> {
 	public ExonSequence getExonSequence() throws CompoundNotFoundException;
 	
 	/**
+	 * Returns the DNA transcription sequence responsible for the current BioPolymer.
+	 * 
+	 * @return The DNA transcription sequence responsible for the current BioPolymer.
+	 */
+	public TranscriptSequence getTranscriptSequence() throws CompoundNotFoundException;
+	
+	/**
+	 * Returns the DNA gene sequence responsible for the current BioPolymer.
+	 * 
+	 * @return The DNA gene sequence responsible for the current BioPolymer.
+	 */
+	public GeneSequence getGeneSequence() throws CompoundNotFoundException;
+	
+	/**
 	 * Returns the mRNA sequence responsible for the current BioPolymer.
 	 * 
 	 * @return The mRNA sequence responsible for the current BioPolymer.
@@ -67,9 +83,9 @@ public interface GeneticBioPolymer<T> {
 	public ProteinSequence getProteinSequence() throws CompoundNotFoundException;
 	
 	/**
-	 * Returns the original sequence that was used to create this genetic biopolymer instance.
+	 * Returns the original sequence that was used to create this genetic BioPolymer instance.
 	 * 
-	 * @return The original sequence that was used to create this genetic biopolymer instance.
+	 * @return The original sequence that was used to create this genetic BioPolymer instance.
 	 */
 	public T getSequence();
 }
