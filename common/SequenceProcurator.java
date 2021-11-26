@@ -7,22 +7,22 @@ import org.biojava.nbio.core.sequence.ProteinSequence;
 import org.biojava.nbio.core.sequence.io.FastaReaderHelper;
 
 /**
- * Contains various utility methods for loading sequences.
+ * Contains various utility methods for loading sequences from BioInformatics Databases.
  *
  * @author DZ-FSDev
  * @since 17.0.1
- * @version 0.0.1
+ * @version 0.0.2
  */
 public final class SequenceProcurator {
 	private SequenceProcurator() {}
 
 	/**
+	 * Returns a requested ProteinSequence given a specified uniProtId.
 	 * 
-	 * 
-	 * @param uniProtId
-	 * @return
+	 * @param uniProtId The specified uniProtId.
+	 * @return The requested ProteinSequence.
 	 * @throws IOException
-	 * @since 0.0.1
+	 * @since 0.0.2
 	 */
 	public static ProteinSequence getProteinSequenceForId(String uniProtId) throws IOException {
 		URL uniprotFasta = new URL(String.format("https://www.uniprot.org/uniprot/%s.fasta", uniProtId));
@@ -30,12 +30,12 @@ public final class SequenceProcurator {
 	}
 
 	/**
+	 * Returns a requested ProteinSequence given a specified uniProtId.
 	 * 
-	 * 
-	 * @param uniProtId
-	 * @return
+	 * @param uniProtId The specified uniProtId.
+	 * @return The requested ProteinSequence.
 	 * @throws IOException
-	 * @since 0.0.1
+	 * @since 0.0.2
 	 */
 	public static ProteinSequence getProteinSequenceForIdVerbose(String uniProtId) throws IOException {
 		ProteinSequence seq = getProteinSequenceForId(uniProtId);
@@ -44,15 +44,15 @@ public final class SequenceProcurator {
 	}
 
 	/**
-	 * Helper method
+	 * Returns a requested ProteinSequence given a specified uniProtId and InputStream to read from.
 	 * 
-	 * @param inputStream
-	 * @param uniProtId
-	 * @return
+	 * @param inputStream The specified InputStream to load the ProteinSequence from.
+	 * @param uniProtId The specified uniProtId.
+	 * @return The requested ProteinSequence.
 	 * @throws IOException
-	 * @since 0.0.1
+	 * @since 0.0.2
 	 */
-	private static ProteinSequence getProteinSequenceForIdFromInputStream(InputStream inputStream, String uniProtId) throws IOException {
+	public static ProteinSequence getProteinSequenceForIdFromInputStream(InputStream inputStream, String uniProtId) throws IOException {
 		return FastaReaderHelper.readFastaProteinSequence(inputStream).get(uniProtId);
 	}
 }
