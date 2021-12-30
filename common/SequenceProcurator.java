@@ -3,6 +3,8 @@ package com.dz_fs_dev.biology.common;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.logging.Logger;
+
 import org.biojava.nbio.core.sequence.ProteinSequence;
 import org.biojava.nbio.core.sequence.io.FastaReaderHelper;
 
@@ -21,7 +23,7 @@ public final class SequenceProcurator {
 	 * 
 	 * @param uniProtId The specified uniProtId.
 	 * @return The requested ProteinSequence.
-	 * @throws IOException
+	 * @throws IOException Thrown if procurement failed.
 	 * @since 0.0.2
 	 */
 	public static ProteinSequence getProteinSequenceForId(String uniProtId) throws IOException {
@@ -30,16 +32,17 @@ public final class SequenceProcurator {
 	}
 
 	/**
-	 * Returns a requested ProteinSequence given a specified uniProtId.
+	 * Returns a requested ProteinSequence given a specified uniProtId logging the procurement.
 	 * 
 	 * @param uniProtId The specified uniProtId.
+	 * @param logger Where the procurement is logged.
 	 * @return The requested ProteinSequence.
-	 * @throws IOException
+	 * @throws IOException Thrown if procurement failed.
 	 * @since 0.0.2
 	 */
-	public static ProteinSequence getProteinSequenceForIdVerbose(String uniProtId) throws IOException {
+	public static ProteinSequence getProteinSequenceForIdVerbose(String uniProtId, Logger logger) throws IOException {
 		ProteinSequence seq = getProteinSequenceForId(uniProtId);
-		System.out.printf("id : %s%n%s%n%s%n", uniProtId, seq, seq.getOriginalHeader());
+		logger.info(String.format("id : %s%n%s%n%s%n", uniProtId, seq, seq.getOriginalHeader()));
 		return seq;
 	}
 
@@ -49,7 +52,7 @@ public final class SequenceProcurator {
 	 * @param inputStream The specified InputStream to load the ProteinSequence from.
 	 * @param uniProtId The specified uniProtId.
 	 * @return The requested ProteinSequence.
-	 * @throws IOException
+	 * @throws IOException Thrown if procurement failed.
 	 * @since 0.0.2
 	 */
 	public static ProteinSequence getProteinSequenceForIdFromInputStream(InputStream inputStream, String uniProtId) throws IOException {
